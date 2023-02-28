@@ -13,29 +13,16 @@ const emojis={
 const maps=[];
 
 maps.push(`
-I-XX--XXXX
-X---X-XXX
-X-XXX-XXXX
-X-XXX-XXXX
-X--XXXXXXX
-X-X-XXXXXX
-X-X--XXXX
-X-XX-XXXXX
-X----XXXXX
+IX---XXXXX
+---X---XXX
+X--XXX-XXX
+X-XX---XXX
+XXXX-XXXXX
+XXXX---XXX
+XXXXXX-XXX
+XXXXXX-XXX
+X------XXX
 O-XXXXXXXX
-`);
-
-maps.push(`
-  I-X---XXXX
-  X---X-XXX
-  XXXXX-XXXX
-  XXXXX-XXXX
-  XX----XXXX
-  XXX-XXXXXX
-  XXX--XXXX
-  X-XX-XXXXX
-  X----XXXXX
-  O-XXXXXXXX
 `);
 maps.push(`
   O--XXXXXXX
