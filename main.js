@@ -167,12 +167,14 @@ function gameWin() {
       localStorage.setItem('record_time', playerTime);
       pResult.innerHTML = 'SUPERASTE EL RECORD :)';
     } else {
-      pResult.innerHTML = 'Lo siento, no superaste el records :(';
+      pResult.innerHTML = 'Lo siento, no superaste el record :(';
     }
   } else {
     localStorage.setItem('record_time', playerTime);
     pResult.innerHTML = 'Primera vez? Muy bien, pero ahora trata de superar tu tiempo :)';
   }
+  setTimeout(()=>{location.reload()}, 2000)
+  
 
   console.log({recordTime, playerTime});
 }
