@@ -76,8 +76,8 @@ body {
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 20%;
-    right: 35%;
+    top: 10%;
+    right: 30%;
   }
   #game-over h2{
     font-size: 50px;
@@ -91,8 +91,10 @@ body {
     border-radius: 10px;
     border: none;
     font-size: 30px;
-    padding: 5px;
+    padding: 8px;
     cursor: pointer;
+    background-color: #ff6600;
+    color: #e3e702;
   }
   
   @media (max-width: 440px) {

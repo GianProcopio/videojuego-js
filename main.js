@@ -10,6 +10,13 @@ const gameOver = document.getElementById('game-over');
 
 const btnJugar = document.getElementById('btn-jugar');
 
+const recordHtml = document.getElementById('record')
+const resultHtml = document.getElementById('result')
+
+const recordFinal = document.getElementById('recordFinal');
+const resultFinal = document.getElementById('resultFinal')
+const tiempoFinal = document.getElementById('tiempoFinal');
+
 btnJugar.addEventListener('click', ()=>{
     location.reload();
 })
@@ -74,7 +81,8 @@ function game(){
 
     if(!timeStart){
         timeStart = Date.now();
-        timeInterval = setInterval(showTime, 100)
+        timeInterval = setInterval(showTime, 100);
+        showRecord()
     }
 
     const mapRows = mapa.trim().split('\n');
@@ -116,19 +124,34 @@ function game(){
 
 function gameWin(){
     clearInterval(timeInterval);
+    timeStart = undefined;
     level = 0;
-    let confirmarRevancha = confirm("Terminó el juego, quieres jugar otra vez?")
-    if(confirmarRevancha){
-        timeStart = undefined;
-        level -= 1;
-        game();
-    }else{
-        canvas.style.display = 'none';
-        buttons.style.display = 'none';
-        messages.style.display = 'none';
-        gameOver.style.display = 'flex';
-    }
     
+    canvas.style.display = 'none';
+    buttons.style.display = 'none';
+    messages.style.display = 'none';
+    gameOver.style.display = 'flex';
+    
+
+    let resultado;
+    const recordTime = (localStorage.getItem('record_time')/ 1000).toFixed(2);
+    const playerTime = Date.now() - timeStart;
+    if(recordTime){
+        
+        if(recordTime > playerTime){
+            localStorage.setItem('record_time', playerTime);
+            resultHtml.innerHTML = "¡SUPERASTE EL RÉCORD!";
+            resultado = "¡SUPERASTE EL RÉCORD!";
+        }
+        else{
+            resultHtml.innerHTML = "NO superaste el récord :("
+            resultado = "NO superaste el récord :("
+        }
+    }else{
+        localStorage.setItem('record_time', playerTime);
+    }
+    recordFinal.innerHTML = recordTime + " seg";
+    resultFinal.innerHTML = resultado;
 }
 const vidas = document.getElementById('vidas');
 const tiempo = document.getElementById('tiempo');
@@ -156,14 +179,13 @@ function showTime(){
     tiempo.innerHTML = ((Date.now() - timeStart) / 1000).toFixed(2);
 }
 
+function showRecord(){
+    recordHtml.innerHTML = ((localStorage.getItem('record_time'))/ 1000).toFixed(2);
+}
+
 function levelWin(){
     level++;
     game()
-    if(mapa > 2){
-        level = 0;
-        gameWin();
-        return;
-    }
 }
 
 function size(){
