@@ -1,34 +1,27 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="./style.css">
-    <script src="https://kit.fontawesome.com/167c5f5410.js" crossorigin="anonymous"></script>
-<title>VideoJuego con JS</title>
+<title>Platzriv - Jueguito online de carreras y calaveras</title>
 </head>
 <body>
 <div class="game-container">
-<canvas id="canvas"></canvas>
-<div class="buttons" id="buttons">
+<canvas id="game"></canvas>
+<div class="btns">
 <button id="up">Arriba</button>
 <button id="left">Izquierda</button>
 <button id="right">Derecha</button>
 <button id="down">Abajo</button>
 </div>
-<div class="messages" id="messages">
-    <p>Vidas: <span id="vidas"></span></p>
-    <p>Tiempo:⏰ <span id="tiempo"></span></p>
-    <p>Récord:🏁 <span id="record"></span></p>
-    <p id="result"></p>
+<div class="messages">
+<p>Vidas: <span id="lives"></span></p>
+<p>Tiempo: ⏰<span id="time"></span></p>
+<p>Record: 🏁<span id="record"></span></p>
+<p id="result"></p>
 </div>
-
-<section id="game-over">
-    <h2>Fin del juego!</h2>
-    <h3>Récord: <span id="recordFinal"></span></h3>
-    <h3 id="resultFinal"></h3>
-    <button id="btn-jugar" class="btn-jugar">Volver a jugar</button>
-</section>
 </div>
 <script src="./maps.js"></script>
 <script src="./main.js"></script>
