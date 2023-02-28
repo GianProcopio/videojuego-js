@@ -4,11 +4,26 @@ const up = document.getElementById('up');
 const down = document.getElementById('down');
 const right = document.getElementById('right');
 const left = document.getElementById('left');
+const buttons = document.getElementById('buttons');
+const messages = document.getElementById('messages');
+const gameOver = document.getElementById('game-over');
+
+const btnJugar = document.getElementById('btn-jugar');
+
+btnJugar.addEventListener('click', ()=>{
+    location.reload();
+})
 
 let canvasSize;
 let elementSize;
 let level = 0;
 let lives = 3;
+
+
+let timeStart;
+let timePlayer;
+let timeInterval;
+
 
 const playerPosition = {
     x: undefined,
@@ -32,8 +47,10 @@ down.addEventListener('click', movePlayerDown);
 left.addEventListener('click', movePlayerLeft);
 right.addEventListener('click', movePlayerRight);
 
-function game(){
 
+
+function game(){
+    
     if(window.innerHeight>window.innerWidth){
         canvasSize = window.innerWidth*0.7;
     }
@@ -48,11 +65,16 @@ function game(){
 
     context.font = elementSize + "px Verdana";
     context.textAlign = "";
+    
     const mapa = maps[level];
-
     if(!mapa){
         gameWin();
         return;
+    }
+
+    if(!timeStart){
+        timeStart = Date.now();
+        timeInterval = setInterval(showTime, 100)
     }
 
     const mapRows = mapa.trim().split('\n');
@@ -93,22 +115,32 @@ function game(){
 }
 
 function gameWin(){
+    clearInterval(timeInterval);
     level = 0;
     let confirmarRevancha = confirm("Terminó el juego, quieres jugar otra vez?")
     if(confirmarRevancha){
-        level --;
-        game()
+        timeStart = undefined;
+        level -= 1;
+        game();
     }else{
-        location.reload()
+        canvas.style.display = 'none';
+        buttons.style.display = 'none';
+        messages.style.display = 'none';
+        gameOver.style.display = 'flex';
     }
     
 }
 const vidas = document.getElementById('vidas');
+const tiempo = document.getElementById('tiempo');
+
 function levelFail(){
     lives --;
     if(lives == 0){
         level = 0;
+        timeStart = undefined;
         lives = 3;
+        game();
+        
     }
     playerPosition.x = undefined;
     playerPosition.y = undefined;
@@ -120,9 +152,18 @@ function showLives(){
     vidas.innerHTML = emojis['HEART'].repeat(lives)
 }
 
+function showTime(){
+    tiempo.innerHTML = ((Date.now() - timeStart) / 1000).toFixed(2);
+}
+
 function levelWin(){
     level++;
     game()
+    if(mapa > 2){
+        level = 0;
+        gameWin();
+        return;
+    }
 }
 
 function size(){

@@ -33,7 +33,7 @@ body {
     width: 100%;
   }
   
-  button {
+  .buttons button {
     background: black;
     border-radius: 8px;
     border: none;
@@ -45,7 +45,7 @@ body {
     cursor: pointer;
     margin-top: 5px;
   }
-  button:not(:last-child) {
+  .buttons button:not(:last-child) {
     margin-right: 10px;
   }
  
@@ -69,6 +69,30 @@ body {
     display: block;
     margin: 0;
     width: 100%;
+  }
+  #game-over{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 20%;
+    right: 35%;
+  }
+  #game-over h2{
+    font-size: 50px;
+  }
+  #game-over h3{
+    font-size: 40px;
+  }
+  .btn-jugar{
+    display: flex;
+    width: 200px;
+    border-radius: 10px;
+    border: none;
+    font-size: 30px;
+    padding: 5px;
+    cursor: pointer;
   }
   
   @media (max-width: 440px) {

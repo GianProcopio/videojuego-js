@@ -12,7 +12,7 @@
     <div class="game-container">
         <div class="space">
             <canvas id="canvas"></canvas>
-            <div class="buttons">
+            <div class="buttons" id="buttons">
                 
             <button id="up">
                 <i class="flecha fa-solid fa-arrow-up"></i>
@@ -30,12 +30,18 @@
         </div>
     
     
-    <div class="messages">
+    <div class="messages" id="messages">
         <p>Vidas: <span id="vidas"></span></p>
-        <p>Tiempo:</p>
+        <p>Tiempo:⏰ <span id="tiempo"></span></p>
         <p>Récord</p>
     </div>
 </div>
+
+<section id="game-over">
+    <h2>Fin del juego!</h2>
+    <h3>Récord: <span id="record"></span></h3>
+    <button id="btn-jugar" class="btn-jugar">Volver a jugar</button>
+</section>
     <script src="./maps.js"></script>
     <script src="./main.js"></script>
 </body>
