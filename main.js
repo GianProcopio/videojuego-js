@@ -47,6 +47,10 @@ let enemyPosition = [];
 window.addEventListener('load', game);
 window.addEventListener('resize', size);
 
+function fixNumber(num){
+    return Number(num.toFixed(2))
+}
+
 document.addEventListener('keydown', movePlayerByKey);
 
 up.addEventListener('click', movePlayerUp);
@@ -68,7 +72,7 @@ function game(){
     canvas.setAttribute('height',canvasSize);
     
     
-    elementSize = canvasSize / 10 - 1.5;
+    elementSize = Number((canvasSize / 10 - 0.5).toFixed(0));
 
     context.font = elementSize + "px Verdana";
     context.textAlign = "";
@@ -190,14 +194,17 @@ function levelWin(){
 
 function size(){
     if(window.innerWidth < window.innerHeight){
-        canvasSize = window.innerWidth * 0.6;
+        canvasSize = window.innerWidth * 0.7;
     }else if(window.innerHeight > window.innerWidth){
-    canvasSize = window .innerHeight * 0.6; 
+    canvasSize = window .innerHeight * 0.7; 
     }
+
+    canvasSize = Number(canvasSize.toFixed(0));
 
     canvas.setAttribute('width', canvasSize);
     canvas.setAttribute('height', canvasSize);
-    
+    playerPosition.x = undefined;
+    playerPosition.y = undefined;
     game()
 }
 function movePlayer(){  
