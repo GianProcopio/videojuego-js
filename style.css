@@ -65,7 +65,7 @@
   }
   
   @media (max-width: 440px) {
-    button { margin-top: 5px; }
+    .buttons button { margin-top: 0px; }
     #up, #down { margin-left: 100%; margin-right: 100%; }
   }
   @media (min-width: 715px){
