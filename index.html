@@ -8,7 +8,7 @@
 <title>Videojuego con JS</title>
 </head>
 <body>
-<div class="game-container">
+<div class="game-container" id="container">
 <canvas id="game"></canvas>
 <div class="buttons">
 <button id="up">Arriba</button>
@@ -23,7 +23,13 @@
 <p id="result"></p>
 </div>
 </div>
-<script src="./maps.js"></script>
-<script src="./main.js"></script>
+<div class="game-over" id="game-over">
+    <h1>¡Fin del Juego!</h1>
+    <h3>Récord: <span id="recordFinal"></span></h3>
+    <h3>Tu tiempo: <span id="tiempoFinal"></span></h3>
+    <button id="btn-jugar" class="btn-jugar">Volver a jugar</button>
+</div>
+<script src="./js/maps.js"></script>
+<script type="module" src="./js/main.js"></script>
 </body>
 </html>

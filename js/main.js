@@ -1,3 +1,5 @@
+import * as m from "./maps.js";
+
 const canvas = document.querySelector('#game');
 const game = canvas.getContext('2d');
 const btnUp = document.querySelector('#up');
@@ -8,6 +10,18 @@ const spanLives = document.querySelector('#lives');
 const spanTime = document.querySelector('#time');
 const spanRecord = document.querySelector('#record');
 const pResult = document.querySelector('#result');
+
+const recordFinal = document.getElementById('recordFinal');
+const tiempoFinal = document.getElementById('tiempoFinal')
+const btnRestart = document.getElementById('btn-jugar');
+
+const container = document.getElementById('container');
+
+const gameOver = document.getElementById('game-over')
+btnRestart.addEventListener('click', ()=>{
+  location.reload();
+})
+
 
 let canvasSize;
 let elementsSize;
@@ -55,15 +69,13 @@ function setCanvasSize() {
 }
 
 function startGame() {
-  console.log({ canvasSize, elementsSize });
-  // console.log(window.innerWidth, window.innerHeight);
+
 
   game.font = elementsSize + 'px Verdana';
   game.textAlign = 'end';
 
-  const map = maps[level];
-
-  if (!map) {
+  let map = maps[level];
+  if(!map){
     gameWin();
     return;
   }
@@ -135,9 +147,9 @@ function movePlayer() {
 }
 
 function levelWin() {
-  console.log('Subiste de nivel');
   level++;
   startGame();
+  
 }
 
 function levelFail() {
@@ -158,10 +170,11 @@ function levelFail() {
 function gameWin() {
   console.log('¡Terminaste el juego!');
   clearInterval(timeInterval);
-
+  container.style.display = 'none';
+  gameOver.style.display = 'flex';
   const recordTime = localStorage.getItem('record_time');
   const playerTime = Date.now() - timeStart;
-
+  
   if (recordTime) {
     if (recordTime >= playerTime) {
       localStorage.setItem('record_time', playerTime);
@@ -173,14 +186,13 @@ function gameWin() {
     localStorage.setItem('record_time', playerTime);
     pResult.innerHTML = 'Primera vez? Muy bien, pero ahora trata de superar tu tiempo :)';
   }
-  setTimeout(()=>{location.reload()}, 2000)
+  recordFinal.innerHTML = (recordTime / 1000).toFixed(2) + ' seg';
+  tiempoFinal.innerHTML = (playerTime / 1000).toFixed(2) + ' seg';
   
-
-  console.log({recordTime, playerTime});
 }
 
 function showLives() {
-  const heartsArray = Array(lives).fill(emojis['HEART']); // [1,2,3]
+  const heartsArray = Array(lives).fill(emojis['HEART']); 
   
   spanLives.innerHTML = "";
   heartsArray.forEach(heart => spanLives.append(heart));

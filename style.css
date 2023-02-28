@@ -78,26 +78,13 @@
     .game-container{
       flex-direction: column;
     }}
-  #game-over{
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 10%;
-    right: 30%;
-  }
-  #game-over h2{
-    font-size: 50px;
-  }
-  #game-over h3{
-    font-size: 40px;
-  }
   .btn-jugar{
     display: flex;
-    width: 200px;
+    width: 250px;
+    text-align: center;
     border-radius: 10px;
     border: none;
+    justify-content: center;
     font-size: 30px;
     padding: 8px;
     cursor: pointer;
@@ -105,3 +92,16 @@
     color: #e3e702;
   }
 
+  .game-over{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20%;
+  }
+  .game-over h1{
+    font-size: 50px;
+  }
+  .game-over h3{
+    font-size: 35px;
+  }
